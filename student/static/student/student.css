@@ -1,0 +1,368 @@
+html, body{
+	margin:0%;
+	padding:0%;
+	font-family:sans-serif;
+}
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+    transition: color 1000ms;
+    transition: background-color 1000ms, color 1000ms;
+}
+
+::-webkit-scrollbar-track {
+	border: 1px solid #3d8f52;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #3d8f52;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #183421
+}
+
+.MainContainer{
+	padding-bottom: 10px;
+	margin-bottom:10px;
+}
+
+#colorLayer{
+	margin-left: 5%;
+	background-image: url(image/backgroundColor.png);
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+	position: absolute;
+	bottom:73.2%;
+	left: 1.7%;
+	width: 89%; 
+	height: 25%;
+	z-index: 1;
+	opacity:0.2;
+}
+
+.title{
+	position:absolute;
+	display: block;
+	color: white;
+	font: 100px arial, sans-serif;
+	text-align: left;
+	top: 90px;
+	text-shadow: 2px 4px 8px #000000; 
+}
+
+.cover{
+	width: 100%;
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: sans-serif;
+	font-size: 30px;
+	color: green;
+	margin-left:3%;
+}
+
+h4 {
+	font-family: sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+}
+
+h2 {
+	font-family: sans-serif;
+	font-size: 13pt;
+}
+
+h3{
+	font-family: sans-serif;
+	font-size: 11pt;
+}
+
+.linkBox{
+	border-left-style: hidden;
+	border-right-style: hidden;
+	border-top-style: solid;
+	border-width: 1px;
+	height: 20% ;
+	padding-top:1%;
+}
+
+.linkBoxbottom{
+	border-left-style: hidden;
+	border-right-style: hidden;
+	border-top-style: hidden;
+	border-bottom-style: solid;
+	border-top-style: solid;
+	border-width: 1px;
+	height: 20% ;
+	padding-top:1%;
+}
+
+#backColor2{
+	background-image: url(student/image/backgroundColor2.png);
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+	position: absolute;
+	top:100%;
+	width: 100%; 
+	height: 430%;
+	z-index: 1;
+}
+#image{	
+	margin-left: 5%;
+    background : url(image/B.png);
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+	position: absolute;
+	top:10px;
+	width: 90%; 
+	height: 530%;
+	z-index: 1;
+}
+ 
+
+ 
+a:link{
+	text-decoration: none;
+	font-family: Sans-serif;
+	position:relative;
+	top: 25 px;
+	left: 10%;
+	color: black;
+	}
+
+a:hover{
+ text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+body{
+	background-color:#EEEEEE;
+	overflow-x:hidden;
+}
+
+.TitleBar{
+	background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));
+	position:fixed;
+	width: 100%;
+	height:30px;
+	border-style: hidden;
+	border-width: 2px;
+    top:160px; bottom:0px; right:0px; left:0px;
+	padding-right: 20%;
+	padding-top: 0%;
+	margin-right:20px;
+	margin-top: 0px;
+	text-align: right;
+	z-index: -1;
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.5);
+	
+}
+
+.linkContainer{
+	position: absolute;
+	top: 200px;
+	left: 1%;
+	width: 200px;
+    height: auto;
+    padding: 10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(61, 143, 82);
+	z-index: -2;
+}
+
+.ViewContainer{
+	padding: 10px;
+	margin-left: 250px;
+	width: 80%;
+	height: 75%;
+	position: absolute;
+	top: 200px;
+	z-index: -3;	
+
+
+}
+
+.topContainer{
+	background-color: rgba(13, 26, 0, .8);
+	background-image:url(image/B.png);
+	height: 10px;
+    background-blend-mode:luminosity;
+	background-position: center;	
+	background-size: 1700px;
+	background-repeat: repeat-x;
+	position: fixed;
+    top:0px; bottom:0px; right:0px; left:0px;
+	width: auto;
+	padding-top: 150px;
+	padding-left:50px;
+}
+
+.box{
+	font-family: sans-serif;
+	position: relative;
+	top: 0%;
+	width: auto;
+	height: 20px;
+	background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));
+	padding: 10px;	
+	text-align: center;
+	color: white;
+	
+}
+
+
+.schedContainer{
+	position: absolute;
+	top: 530px;
+	left: 1%;
+	width: 200px;
+    height: auto;
+    padding: 10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(61, 143, 82);
+	z-index: -1;
+	
+}
+
+.textContainer{
+
+}
+
+
+.schedContainer2{
+	text-align:center;
+	width:100%;
+	position: relative;
+	color: black;
+	width:100%;
+}
+
+.logout{
+	position:absolute;
+	bottom: 100%;	
+	left: 90%;
+	
+	
+}
+
+.btnLogOut{
+    display:block-inline;
+    width:100px;
+    height:30px;
+    background-color:rgb(38, 91, 52);
+    color:white;
+    font-family:sans-serif;
+    font-weight: bold;
+    transition: background-color 1000ms, color 1000ms;
+	z-index:-1;
+	border-width:3px;
+	border-color: rgb(38, 91, 52);
+	border-radius: 0px;
+}
+
+.btnLogOut:hover{
+	background-color:  rgb(61, 143, 82);
+
+}
+
+.btnCal, .btnProject, .btn-success{
+    margin: auto;
+    display:block-inline;
+    width:100px;
+    height:40px;
+	border: hidden;
+    color:black;
+    font-family:sans-serif;
+    font-weight: bold;
+	font-size: 15px;
+    transition: background-color 1000ms, color 1000ms;
+	z-index:-1;
+	width: 100%;
+}
+
+.btnCal:hover, .btnProject:hover, .btn-success:hover{
+	background: #2e6b3d;
+	color: white;
+}
+
+input{
+    margin-bottom: 15px;
+    padding:10px;
+    width:100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height:70%;
+    border:0px;
+    font-family: sans-serif;
+    font-size: 11pt;
+    text-align: center;
+}
+
+.CalContainer, .LoanProjectionContainer{
+
+
+	position:center;
+	min-width: 250px;
+	width: 600px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.StudentInfoContainer{
+	display: flex;
+	
+}
+
+.errorMsg{
+	color: red;
+	font-family: sans-serif;
+	font-weight: normal;
+	font-weight: lighter;
+
+}
+
+.notif{
+	background:linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));
+	color:white;
+	text-align:center;
+}
+
+table{
+	text-align:center;
+	margin:auto;
+	width: 100%;
+	font-family:sans-serif;
+	background-color: rgb(249, 248, 247);
+	color: black;
+	font-weight:lighter;
+	border-radius:5px;
+}
+
+.tableHeader{
+	font-size: 11pt;
+	color: white;
+	font-weight: bold;
+	background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));
+}
+
+tr{
+	height: 40px;
+
+}
+
+th{
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(224, 222, 219);
+}
+
+td{
+	text-align: center;
+	text-decoration: none;
+}

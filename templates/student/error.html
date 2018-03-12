@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href={% static 'student/student.css' %}>
+    <title> Error </title>
+</head>
+<body>
+
+
+
+	<div class="topContainer">
+		<div class="cover">
+			<span class = "title">Student</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+ 	<div class="linkContainer">
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_status' %}">Status of application</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:loan_application' %}">Apply for a loan</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:payment-add' %}">Add Payment</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_payments' %}">Payments made</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:calculator' %}">Calculator</a></h4>
+
+			</div>
+			<div class="linkBoxbottom">
+			<h4><a href="{% url 'student:profile_url' pk=pk %}"> Account</a></h4>
+
+			</div>
+		</div>
+
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+				Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+				End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+				Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+
+
+		</div>
+	</div>
+        <div class="ViewContainer">
+            {% if error %}
+                <div class="errorMsg">
+                    <h1 style="color: red">{{ error }}</h1>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

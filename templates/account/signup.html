@@ -1,0 +1,71 @@
+{% extends "account/home.html" %}
+{% load staticfiles %}
+
+
+{% block auto %}
+	<script type="text/javascript">
+
+    function show_modalContainer()
+    {
+      document.getElementById('modalContainer').style.display = 'block'; 
+    }
+
+    window.onload = show_modalContainer;
+	</script>
+
+    <script src="{% static 'account/scripts.js' %}"></script>
+
+
+    <link rel="stylesheet" type = "text/css" href="{% static 'account/main.css' %}">
+{% endblock %}
+
+{% block modal %}
+
+    <div  id="modalContainer">
+		
+
+        <div id="modal2">
+            <a href="{% url 'account:home_page' %}" class="close">X</a>
+            <span class="modal_heading">
+                Sign Up<br>
+                {% if array %}
+                    <font color="red" size="3">{{ array.0 }}</font>
+                {% endif %}
+            </span>
+
+            <form method="post" action="" onsubmit="send.disabled = true; return true;">
+                {% csrf_token %}
+                <input id="First Name" type="text" name="First Name"  placeholder = "First Name" value="{{ array.1 }}" required><br>
+                <input id="Last Name" type="text" name="Last Name"  placeholder = "Last Name" value="{{ array.2 }}" required><br>
+                <input id="ID Number" type="text" name="ID Number" maxlength="8" placeholder = "ID Number" pattern="[0-9]{8}" value="{{ array.3 }}" required><br>
+                <select id="College" name="College" required style="width:49.5%; height:40px; border-radius: 5px; margin:auto; text-align:center;">
+                    <option disabled selected value> -- Select Your College -- </option>
+                    <option value="BAGCED" {% if array.4 == "BAGCED" %}selected{% endif %}>BAGCED</option>
+                    <option value="CCS" {% if array.4 == "CCS" %}selected{% endif %}>CCS</option>
+                    <option value="COL" {% if array.4 == "COL" %}selected{% endif %}>COL</option>
+                    <option value="CLA" {% if array.4 == "CLA" %}selected{% endif %}>CLA</option>
+                    <option value="COS" {% if array.4 == "COS" %}selected{% endif %}>COS</option>
+                    <option value="GCOE" {% if array.4 == "GCOE" %}selected{% endif %}>GCOE</option>
+                    <option value="RVRCOB" {% if array.4 == "RVRCOB" %}selected{% endif %}>RVRCOB</option>
+                    <option value="SOE" {% if array.4 == "SOE" %}selected{% endif %}>SOE</option>
+                </select>
+                <select id="Level" name="Level" required style="width:49.5%; height:40px; border-radius: 5px; margin:auto; text-align:center;">
+                    <option disabled selected value> -- Select Your Level -- </option>
+                    <option value="Undergraduate" {% if array.5 == "Undergraduate" %}selected{% endif %}>Undergraduate</option>
+                    <option value="Masters" {% if array.5 == "Masters" %}selected{% endif %}>Masters</option>
+                    <option value="Doctorate" {% if array.5 == "Doctorate" %}selected{% endif %}>Doctorate</option>
+                </select><br><br>
+                <input id="Course" type="text" name="Course" placeholder="Course" value="{{ array.6 }}" required><br>
+                <input id="Cellphone Number" type="text" name="Cellphone Number" placeholder="Mobile Number (must start with 09)" pattern="[0-9]{11}" value="{{ array.7 }}" required><br>
+                <input id="Email" type="text" name="Email" placeholder="Email" value="{{ array.8 }}" required><br>
+                <input id="password1" type="password" name="password1" placeholder="Password" required><br>
+                <input id="password2" type="password" name="password2" placeholder="Re-Enter Password" required><br>
+                <input type="submit" name="send" id="send" class="btnRegister" value="Sign Up"/>
+				
+            </form>
+            <a href="{% url 'account:login_url' %}" class="signin">
+                Have an account already? Login Now
+            </a>
+        </div>
+    </div>
+{% endblock %}

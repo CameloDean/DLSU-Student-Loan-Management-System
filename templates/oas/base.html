@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}OAS Hub{% endblock %}</title>
+</head>
+<body>
+
+{% from .models import Info %}
+<h5>Remaining budget: {% Info.get_remaining_budget %}</h5>
+
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>

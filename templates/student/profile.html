@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+    {% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href={% static 'student/student.css' %}>
+    <title>Profile</title>
+</head>
+    <body>
+
+
+
+	<div class="topContainer">
+		<div class="cover">
+			<span class = "title">Student</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+	<div class="linkContainer">
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_status' %}">Status of application</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:loan_application' %}">Apply for a loan</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:payment-add' %}">Add Payment</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_payments' %}">Payments made</a></h4>
+
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:calculator' %}">Calculator</a></h4>
+
+			</div>
+			<div class="linkBoxbottom">
+			<h4><a href="{% url 'student:profile_url' pk=pk %}"> Account</a></h4>
+
+			</div>
+		</div>
+
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+				Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+				End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+				Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+
+
+		</div>
+	</div>
+
+    <div class="ViewContainer">
+        <h1>Profile</h1>
+        {% if array %}
+            {{ array.0 }}
+        {% endif %}
+			<div class="CalContainer">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label><h2>First Name: </h2></label>
+            </div>
+            <input  type="text"  value="{{ array.1 }}" disabled><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label><h2>Last Name: </h2></label>
+            </div>
+            <input  type="text"  value="{{ array.2 }}" disabled><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label><h2>ID Number: </h2></label>
+            </div>
+            <input  type="text"  value="{{ array.3 }}" disabled><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="College"><h2>College: </h2></label>
+            </div>
+            <select id="College" name="College" style="width:100%; height:40px; border-radius: 5px; margin:auto; text-align:center;" required>
+                <option disabled selected value> -- Select Your College -- </option>
+                <option value="BAGCED" {% if array.4 == "BAGCED" %}selected{% endif %}>BAGCED</option>
+                <option value="CCS" {% if array.4 == "CCS" %}selected{% endif %}>CCS</option>
+                <option value="COL" {% if array.4 == "COL" %}selected{% endif %}>COL</option>
+                <option value="CLA" {% if array.4 == "CLA" %}selected{% endif %}>CLA</option>
+                <option value="COS" {% if array.4 == "COS" %}selected{% endif %}>COS</option>
+                <option value="GCOE" {% if array.4 == "GCOE" %}selected{% endif %}>GCOE</option>
+                <option value="RVRCOB" {% if array.4 == "RVRCOB" %}selected{% endif %}>RVRCOB</option>
+                <option value="SOE" {% if array.4 == "SOE" %}selected{% endif %}>SOE</option>
+            </select><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label><h2>Level: </h2> </label>
+            </div>
+            <input  type="text"  value="{{ array.5 }}" disabled><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="Course"><h2>Course:</h2> </label>
+            </div>
+            <input id="Course" type="text" name="Course" value="{{ array.6 }}" required><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="Cellphone Number"><h2>Cellphone Number(Must Start with 09):</h2> </label>
+            </div>
+            <input id="Cellphone Number" type="text" name="Cellphone Number" value="{{ array.7 }}" pattern="[0-9]{11}" required><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label ><h2>Email:</h2> </label>
+            </div>
+            <input type="text" value="{{ array.8 }}" disabled><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="current_password"><h2>Current Password:</h2> </label>
+            </div>
+            <input id="current_password" type="password" name="current_password" required><br>
+            <div class="notif">
+                <h2>Only fill up the boxes below if you want to change your password</h2>
+            </div>
+            <br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="new_password1"><h2>New Password:</h2> </label>
+            </div>
+            <input id="new_password1" type="password" name="new_password1"><br>
+            <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                <label for="new_password2"><h2>Re-Enter New Password:</h2> </label>
+            </div>
+            <input id="new_password2" type="password" name="new_password2"><br>
+            <button type="submit" class="btn-success">Save Changes</button><br>
+
+        </form>
+            </div>
+    </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <link rel="stylesheet" type = "text/css" href={% static 'oas/oas.css' %}>
+    <title>Edit Payments</title>
+</head>
+<body>
+
+<div class="topContainer">
+		<div class="cover">
+			<span class = "title">OAS</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+    <div class="linkContainer">
+        <div class="linkBox">
+    <h4><a href="{% url 'oas:view_applicants' %}">View applicants</a></h4>
+
+        </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_loaners' %}">View loaners</a></h4>
+
+            </div>
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:all_payments' %}">View payments</a></h4>
+
+            </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_summary' %}">View term summary</a></h4>
+
+            </div>
+        	<div class="linkBoxbottom">
+    <h4><a href="{% url 'oas:view_info' %}">Edit term information</a></h4>
+
+            </div>
+	</div>
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+                Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+                End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+                Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+		</div>
+	</div>
+
+
+    <div class="ViewContainer">
+    <div class="PaymentContainer" style="margin:auto; width: 70%;">
+    <div style="padding:5px;">
+        <h2 style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));padding:10px;color:white;width:170px;">Student details:</h2>
+        <b>{{ student.id_number }}</b><br><br>
+    {{ student.last_name }}, {{ student.first_name }}<br><br>
+    {{ student.college }}<br><br>
+    {{ student.level }}<br><br>
+    <p>
+    Loan amount: ₱ {{ loan.amount }}<br><br>
+    Balance left: ₱ {{ loan.balance }}<br>
+    </p>
+    </div>
+
+    <div class="Appcontainer" style="padding:5px;">
+       <h2 style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));padding:10px;color:white;width:auto;">Payment details:</h2>
+    <form class="form-horizontal" action="" method="post">
+        {% csrf_token %}
+          {% for field in form %}
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <span class="text-danger small" style="color:red">{{ field.errors }}</span>
+                  </div>
+                  <label class="control-label col-sm-2" ><h2 style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">{{ field.label_tag }}</h2></label>
+                  <div class="col-sm-10">{{ field }}</div>
+              </div>
+          {% endfor %}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn-success">Save Changes</button>
+            </div>
+        </div>
+    </form>
+
+    <br><input type="button" value="Back" class="btn-success" onclick="location.href = '{% url 'oas:view_payment_detail' payment.pk %}'">
+    </div>
+    </div>
+    </div>
+</body>
+</html>

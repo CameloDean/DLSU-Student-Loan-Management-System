@@ -1,0 +1,37 @@
+{% extends "oas/app_details.html" %}
+{% load staticfiles %}
+{% block title %}Reject Loan{% endblock %}
+
+{% block auto %}
+    <script type="text/javascript">
+
+    function show_modalContainer()
+    {
+      document.getElementById('modalContainer').style.display = 'block';
+    }
+
+    window.onload = show_modalContainer;
+	</script>
+
+
+    <link rel="stylesheet" type = "text/css" href="{% static 'oas/oas.css' %}">
+
+{% endblock %}
+
+{% block modal0 %}
+    <div id="modal_container" >
+        <div class="modal" style="width:500px;height:200px;bottom:700px">
+            <span class="modal_heading">
+                Are you sure you want to reject {{ student.first_name }} {{ student.last_name }}'s loan application?<br><br><br><br>
+            </span>
+
+            <form method="post" action="" style="">
+                {% csrf_token %}
+                <br>
+                <button name ="choice" class="btnApp"  type="submit" value="Yes" style="width:40%; border-radius:3px;">Yes</button><br><br>
+                <button name="choice" class="btnApp" value="No" style="width:40%; border-radius:3px;">No</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

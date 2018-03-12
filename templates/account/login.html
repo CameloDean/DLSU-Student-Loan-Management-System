@@ -1,0 +1,40 @@
+{% extends "account/home.html" %}
+
+{% block auto %}
+    <script type="text/javascript">
+
+    function show_modalContainer()
+    {
+      document.getElementById('modalContainer').style.display = 'block';
+    }
+
+    window.onload = show_modalContainer;
+	</script>
+{% endblock %}
+
+{% block modal %}
+    <div id="modalContainer">
+        <div class="modal">
+            <a href="{% url 'account:home_page' %}" class="close">X</a>
+            <span class="modal_heading">
+                Log In<br>
+                {% if array %}
+                    <font color="red" size="3">{{ array.0 }}</font>
+                {% endif %}
+            </span>
+
+            <form method="post" action="">
+                {% csrf_token %}
+                <input id ="Email" type="text" name="email" placeholder="Email" value="{{ array.1 }}" required><br>
+                <input id = "Password" type="password" name="password" placeholder="Password" required><br>
+                <input type="submit" class="btnLogIn" value="Log In">
+            </form>
+            <a href="{% url 'account:signup_url' %}" class="signin">
+                Not Yet Registered?
+            </a>
+            <a href="{% url 'account:forgot_password' %}" class="forgotPassword">
+                Forgot Password?
+            </a>
+        </div>
+    </div>
+{% endblock %}

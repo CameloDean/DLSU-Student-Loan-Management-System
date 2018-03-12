@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+    {% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href={% static 'oas/oas.css' %}>
+    <title>{{ student.id_number }}</title>
+</head>
+<body>
+
+<div class="topContainer">
+		<div class="cover">
+			<span class = "title">OAS</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+    <div class="linkContainer">
+        <div class="linkBox">
+    <h4><a href="{% url 'oas:view_applicants' %}">View applicants</a></h4>
+
+        </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_loaners' %}">View loaners</a></h4>
+
+            </div>
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:all_payments' %}">View payments</a></h4>
+
+            </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_summary' %}">View term summary</a></h4>
+
+            </div>
+        	<div class="linkBoxbottom">
+    <h4><a href="{% url 'oas:view_info' %}">Edit term information</a></h4>
+
+            </div>
+	</div>
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+                Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+                End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+                Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+		</div>
+	</div>
+    
+<div class="ViewContainer" style="display:flex;flex-direction: column;">
+    <h1>Loaner Details</h1>
+
+     <div style="padding:5px;margin:auto;font-family:sans-serif;">
+        <h2 style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));padding:10px;color:white;width:170px;">Student details:</h2>
+        <h3>{{ student.id_number }}</h3>
+         {{ student.last_name }}, {{ student.first_name }}<br><br>
+         {{ student.college }}<br><br>
+         {{ student.level }}<br><br>
+         {{ student.course }}<br><br>
+         {{ student.user.email }}<br><br>
+         {{ student.cellphone_number }}<br><br>
+    <p>
+         Loan amount: ₱ {{ loan.amount }}<br><br>
+        Balance left: ₱ {{ loan.balance }}<br>
+    </p>
+    </div>
+    {% if payments %}
+        <table>
+            <tr class="tableHeader">
+                <td>OR Number</td>
+                <td>Amount</td>
+                <td>Date</td>
+                <td>Status</td>
+            </tr>
+            {% for x in payments %}
+                <tr>
+                    <td><a href="{% url 'oas:view_payment_detail' x.pk %}">{{ x.orNum }}</a></td>
+                    <td>{{ x.amount }}</td>
+                    <td>{{ x.date }}</td>
+                    {% if x.isApproved %}
+                        <td>Approved</td>
+                    {% else %}
+                        <td>Not Approved</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+<div class="Appcontainer">
+
+  <br>
+    <input type="button" class="btnApp" value="Back" onclick="location.href = '{% url 'oas:view_loaners' %}'">
+
+    {% block modal %}
+    {% endblock %}
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "account/home.html" %}
+
+{% block auto %}
+	<script type="text/javascript">
+
+    function show_modalContainer()
+    {
+      document.getElementById('modalContainer').style.display = 'block'; 
+    }
+
+    window.onload = show_modalContainer;
+	</script>
+{% endblock %}
+	
+{% block modal %}
+    <div id="modalContainer">
+
+        <div id="modal5">
+            <a href="{% url 'account:home_page' %}" class="close">X</a>
+            <span class="modal_heading">
+                Please confirm your email address with the link sent to your email to complete the registration.
+            </span>
+            <form action="{% url 'account:home_page' %}">
+                <input type="submit" class="btnOK" value="Ok" >
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type = "text/css" href="{% static 'student/student.css' %}">
+    <title>DLSU Student Loan Calculator</title>
+</head>
+<body>
+
+	<div class="topContainer">
+		<div class="cover">
+			<span class = "title">Student</span>	
+		</div>	
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+	
+	<div class = "MainContainer">
+
+
+		<div class="linkContainer">
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_status' %}">Status of application</a></h4>
+			
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:loan_application' %}">Apply for a loan</a></h4>	
+			
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:payment-add' %}">Add Payment</a></h4>
+			
+			</div>
+			<div class="linkBox">
+			<h4><a href="{% url 'student:view_payments' %}">Payments made</a></h4>
+			
+			</div>			
+			<div class="linkBox">
+			<h4><a href="{% url 'student:calculator' %}">Calculator</a></h4>
+			
+			</div>	
+			<div class="linkBoxbottom">
+			<h4><a href="{% url 'student:profile_url' pk=pk %}"> Account</a></h4>
+			
+			</div>				
+		</div>
+
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+				Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+				End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+				Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+
+
+		</div>
+	</div>
+		
+		<div class="ViewContainer">
+		<h1>Calculate Loan</h1>
+			<div class="CalContainer">
+			<form method="POST" action="{% url 'student:calculation_result' %}">
+				{% csrf_token %}
+                <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                    <h2>Amount</h2>
+                </div>
+				<input type="number" name="amount_field" id="amount_field" required><br>
+				<br>
+                <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                    <h2>Start Date</h2>
+                </div>
+				<input type="date" name="sdate" id="sdate" placeholder="Starting Month"><br>
+				<br>
+                <div style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));color:white;text-align:center">
+                    <h2>End Date</h2>
+                </div>
+                <input type="date" name="edate" id="edate" placeholder="Ending Month"><br>
+				<br>
+				<button type="submit" class="btnCal">Calculate</button>
+			</form>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+</body>
+</html>

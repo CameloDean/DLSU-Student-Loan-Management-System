@@ -1,0 +1,47 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+
+	<head>
+		<title> DLSU Student Loan Hub</title>
+    <link rel="stylesheet" type = "text/css" href="{% static 'account/main.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script>$('input:text').focus(
+    function(){
+        $(this).val('');
+    });</script>
+	{% block auto %}
+    {% endblock %}
+	</head>
+	
+	<body>
+
+		<div class = "heading">
+		
+			<span class = "title">De La Salle University</span>	
+			<span class = "info">Student Loan Hub</span>
+						
+
+		<div class = "footer">
+				
+		<div class = "info2container">
+		<span class = "info2">The Student Loan Program (SLP) is a short-term interest-free loan facility for <br>the payment of tuition and fees of undergraduate and graduate students of DLSU.</span>		
+		</div>
+			<div class = "buttonsContainer">
+
+				<button class="login" >
+					<a href="{% url 'account:login_url' %}" class="loginLink">LOG IN</a>
+				</button>
+				<button class="register">
+					<a href="{% url 'account:signup_url' %}" class="registerLink">SIGN UP</a>
+				</button>						
+			</div>		
+		</div>
+		</div>
+
+        {% block modal %}
+        {% endblock %}
+		
+	</body>
+</html>	

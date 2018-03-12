@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    {% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href={% static 'oas/oas.css' %}>
+    <title>Summary</title>
+</head>
+<body>
+
+
+
+	<div class="topContainer">
+		<div class="cover">
+			<span class = "title">OAS</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+    <div class="linkContainer">
+        <div class="linkBox">
+    <h4><a href="{% url 'oas:view_applicants' %}">View applicants</a></h4>
+     
+        </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_loaners' %}">View loaners</a></h4>
+
+            </div>
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:all_payments' %}">View payments</a></h4>
+
+            </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_summary' %}">View term summary</a></h4>
+
+            </div>
+        	<div class="linkBoxbottom">
+    <h4><a href="{% url 'oas:view_info' %}">Edit term information</a></h4>
+
+            </div>
+	</div>
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+                Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+                End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+                Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+		</div>
+	</div>
+    
+<div class="ViewContainer">
+    <h1>Term Summary</h1><br>
+    {% if notif %}
+            <div class="notif">
+                <h2>{{ notif }}</h2>
+            </div>
+    {% else %}
+    <div class="SummaryContainer">
+        <h2 style="background: linear-gradient(-90deg,  rgb(61, 143, 82),rgb(38, 91, 52));padding:10px;color:white;width:auto;">{{ curr_info.term_AY }}</h2>
+        {% load humanize %}
+        <table>
+        <tr>
+            <td>Budget remaining: ₱ {{ budget|intcomma }}</td>
+        </tr>
+        <tr>
+            <td>Number of loaners: {{ loaners.count }}</td>
+        </tr>
+            <tr>
+                <td>Number of pending applicants: {{ applicants.count }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

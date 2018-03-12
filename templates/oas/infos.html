@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+    {% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href={% static 'oas/oas.css' %}>
+    <title>Term Information</title>
+</head>
+<body>
+
+	<div class="topContainer">
+		<div class="cover">
+			<span class = "title">OAS</span>
+		</div>
+	</div>
+	<div class="TitleBar">
+
+		<input type="button" class="btnLogOut" value="LOG OUT" onclick="location.href = '{% url 'account:logout_url' %}'">
+	</div>
+
+    <div class = "MainContainer">
+
+    <div class="linkContainer">
+        <div class="linkBox">
+    <h4><a href="{% url 'oas:view_applicants' %}">View applicants</a></h4>
+     
+        </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_loaners' %}">View loaners</a></h4>
+                
+            </div>
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:all_payments' %}">View payments</a></h4>
+                
+            </div>
+
+        	<div class="linkBox">
+    <h4><a href="{% url 'oas:view_summary' %}">View term summary</a></h4>
+                
+            </div>
+        	<div class="linkBoxbottom">
+    <h4><a href="{% url 'oas:view_info' %}">Edit term information</a></h4>
+            
+            </div>
+	</div>
+	<div class="schedContainer">
+		<div class="box">
+			<b> Schedule </b>
+		</div>
+		<div class="schedContainer2">
+                <br>
+                Start of Application
+				<h4> {{ curr_info.application_start }} </h4>
+
+                End of Application
+				<h4> {{ curr_info.application_end }} </h4>
+
+                Release of Results
+				<h4> {{ curr_info.release_of_results }} </h4>
+
+                Deadline of Payment
+				<h4> {{ curr_info.deadline_of_payment }} </h4>
+		</div>
+	</div>
+
+
+<div class="ViewContainer">
+    {% if info %}
+
+    <h1>Term Information</h1><br>
+        <table>
+
+            <tr class="tableHeader">
+                <td>Term/AY</td>
+                <td>Budget</td>
+                <td>Start of term</td>
+                <td>End of term</td>
+                <td>Start of application</td>
+                <td>End of application</td>
+                <td>Release of results</td>
+                <td>Deadline of payment</td>
+            </tr>
+
+            {% for x in info %}
+                <tr>
+                    <td><a href="{% url 'oas:edit_info' x.pk %}"style="left:0%;">{{ x.term_AY }}</a></td>
+                    <h2><td>₱ {{ x.budget }}</td></h2>
+                    <td>{{ x.start_of_term}}</td>
+                    <td>{{ x.end_of_term }}</td>
+                    <td>{{ x.application_start }}</td>
+                    <td>{{ x.application_end }}</td>
+                    <td>{{ x.release_of_results }}</td>
+                    <td>{{ x.deadline_of_payment }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+        <h3>No term information available</h3>
+    {% endif %}
+	<br>
+	<br>
+
+<div class="Appcontainer">
+    
+    <input type="button" class="btnApp" value="Add new term information" onclick="location.href = '{% url 'oas:create_info' %}'">
+
+</div>
+</div>
+</body>
+</html>
